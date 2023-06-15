@@ -59,7 +59,7 @@ export const App = () => {
   return (
     <div>
       <Section title="Phonebook">
-        <ContactForm onSubmit={addContact} />
+        <ContactForm />
       </Section>
       <Section title="Contacts">
         {contacts.length <= 0 ? (
