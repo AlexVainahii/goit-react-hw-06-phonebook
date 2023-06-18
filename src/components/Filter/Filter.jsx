@@ -1,7 +1,13 @@
 import { Input } from 'components/ContactForm/ContactForm.styled';
-import PropTypes from 'prop-types';
 import { Card } from './Filter.styled';
-export const Filter = ({ filterContacts }) => {
+import { useDispatch } from 'react-redux';
+import { changeFilter } from 'redux/filterSlice';
+export const Filter = () => {
+  const dispatch = useDispatch();
+  const filterContacts = e => {
+    console.log(e.target.value);
+    dispatch(changeFilter(e.target.value));
+  };
   return (
     <Card>
       <label htmlFor="filter">Find contacts by name</label>
@@ -14,7 +20,4 @@ export const Filter = ({ filterContacts }) => {
       />
     </Card>
   );
-};
-Filter.propTypes = {
-  filterContacts: PropTypes.func.isRequired,
 };

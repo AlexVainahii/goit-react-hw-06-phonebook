@@ -1,20 +1,27 @@
 import { Button, Form, Input } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, addContact } from '../../redux/contacts/contactsSlice';
+
 import { nanoid } from '@reduxjs/toolkit';
+import { addContact } from 'redux/contactsSlice';
+import { toast } from 'react-toastify';
+
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(state => state.contacts.contacts);
   const formSubmit = e => {
     e.preventDefault();
     const { name, number } = e.target.elements;
     if (
-      contacts.find(option => option.name.toLowerCase() === name.toLowerCase())
+      contacts.find(
+        option => option.name.toLowerCase() === name.value.toLowerCase()
+      )
     ) {
-      alert(`${name} is already in contacts list`);
+      toast.warning(`${name.value} is already in contacts list`);
       return false;
     } else {
-      dispatch(addContact({ id: nanoid(), name, number }));
+      dispatch(
+        addContact({ id: nanoid(), name: name.value, number: number.value })
+      );
       name.value = '';
       number.value = '';
       return true;
