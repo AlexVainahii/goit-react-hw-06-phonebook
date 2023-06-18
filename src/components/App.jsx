@@ -5,10 +5,11 @@ import { P } from './ContactList/ContactList.styled';
 import { Filter } from './Filter/Filter';
 import { Section } from './Section/Section';
 import { useSelector } from 'react-redux';
+import { Container, SectionContainer } from './App.styled';
 export const App = () => {
   const contacts = useSelector(state => state.contacts.contacts);
   return (
-    <div>
+    <SectionContainer>
       <ToastContainer autoClose={3000} draggable={false} />
       <Section title="Phonebook">
         <ContactForm />
@@ -17,12 +18,12 @@ export const App = () => {
         {contacts.length <= 0 ? (
           <P>No contacts in Phonebook</P>
         ) : (
-          <>
+          <Container>
             <Filter />
             <ContactList />
-          </>
+          </Container>
         )}
       </Section>
-    </div>
+    </SectionContainer>
   );
 };
