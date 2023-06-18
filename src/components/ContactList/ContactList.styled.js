@@ -10,7 +10,7 @@ export const Ul = styled.ul`
   gap: 15px;
   background: linear-gradient(to bottom, #6e69e4, #1336ad);
   border-radius: 5px;
-  height: 390px;
+  max-height: 390px;
   overflow: auto;
   @media (max-width: 768px) {
     width: 300px;
